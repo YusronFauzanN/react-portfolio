@@ -1,69 +1,64 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    @apply bg-gray-100;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.text-writter{
+    @apply border-r-4;
+    animation: 
+        cursor .4s step-end infinite alternate;
+}
+@keyframes cursor{
+    50% { border-color: transparent; }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@keyframes typing {
+  from {
+    width: 0ch;
+  }
+  to {
+    width: 24ch;
+  }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.animate-typing {
+    animation-name: typing;
+    animation-duration: 5s;
+    animation-timing-function: steps(24);
+    animation-iteration-count: infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.15em solid black;
+}
+
+
+.will-change-transform {
+    will-change: transform;
+}
+
+.navbar-fixed{
+    @apply fixed z-[999] bg-white bg-opacity-75 backdrop-blur-sm;
+    box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.2);
+}
+
+.hamburger-menu{
+    @apply w-[30px] h-[2px] my-2 block;
+}
+
+.hamburger-active > span:nth-child(1){
+    @apply rotate-45;
+}
+.hamburger-active > span:nth-child(3){
+    @apply -rotate-45;
+}
+.hamburger-active > span:nth-child(2){
+    @apply scale-0;
+}
+
+#darkTheme:checked ~ label div.toggle-circle{
+    @apply translate-x-3
 }
